@@ -21,6 +21,7 @@
         1000 sep={}}
 \pgfkeys{/pgfplots/legend pos=north west}
 \begin{axis}[
+cycle list name=mark list,
 xlabel=Год,
 ylabel=Количесво абонентов/линий (млн)
 ]
@@ -56,6 +57,7 @@ ylabel=Количесво абонентов/линий (млн)
 
 
 \begin{axis}[stack plots=y,/tikz/ybar,
+cycle list name=mark list,
 xlabel=Год,
 ylabel=Количесво абонентов (млн)
 ]
@@ -89,6 +91,7 @@ ylabel=Количесво абонентов (млн)
         1000 sep={}}
 \pgfkeys{/pgfplots/legend pos=north west}
 \begin{axis}[stack plots=y,/tikz/ybar,
+cycle list name=mark list,
 xlabel=Год,
 ylabel=Количесво абонентов (млн)
 ]
@@ -126,9 +129,53 @@ ylabel=Количесво абонентов (млн)
   \label{img1:mob4}
 \end{figure}
 
+
+\pgfplotsset{
+    /pgfplots/area legend/.style={%
+        /pgfplots/legend image code/.code={%
+            \fill[##1] (0cm,-0.1cm) rectangle (0.6cm,0.1cm);
+        }%
+    },
+}
+\usetikzlibrary{patterns}
+
+
 \begin{figure} [!h]
   \center
-\includegraphics[width=0.95\textwidth]{ericsson/mob5.png}
+%\includegraphics[width=0.95\textwidth]{ericsson/mob5.png}
+\begin{tikzpicture}
+\begin{axis}[
+legend cell align=left,
+stack plots=y,
+%area style,
+enlarge x limits=false,
+area legend,
+axis x line=bottom,
+axis y line=left,
+domain=0:1,
+legend style={at={(0.03,0.97)},anchor=north west},
+xlabel=Год,
+ylabel=Общий месячный трафик ($10^{18}$ байт)
+]
+\addplot[pattern color=black, draw=none, pattern=north east lines,  domain=0:1,samples=100] coordinates
+{(2010,0.1) (2011,0.1) (2012,0.2) (2013,0.2) (2014,0.25) (2015,0.25) (2016,0.27) (2017,0.3) (2018,0.3)}
+\closedcycle;
+\addplot[
+    pattern=crosshatch dots,
+    pattern color=black,
+    draw=none,
+    samples=500] coordinates
+{(2010,0.1) (2011,0.3) (2012,0.5) (2013,1.1) (2014,2) (2015,3) (2016,3.7) (2017,6) (2018,7.7)}
+\closedcycle;
+\addplot[
+    pattern=crosshatch,
+    pattern color=black!50!white,
+    draw=none,] coordinates
+{(2010,0.1) (2011,0.3) (2012,0.5) (2013,0.7) (2014,1.5) (2015,2.3) (2016,3) (2017,4) (2018,6)}
+\closedcycle;
+\legend{Речь, Данные мобильных телефонов, Данные мобильных ПК/планшетов/мобильных роутеров}
+\end{axis}
+\end{tikzpicture}
   \caption{Глобальный трафик передачи речи и данных в мобильных сетях, 2010-2018 \cite{ericsson}}
   \label{img1:mob5}
 \end{figure}
