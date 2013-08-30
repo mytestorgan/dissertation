@@ -113,17 +113,24 @@ P[r_s(k)=1]=\varepsilon, P[r_s(k)=0]=1-\varepsilon, ||R_2||>>||R_1||,
 
 Существуют два основных типа буферов компенсации джиттера – фиксированной длины и адаптивной длины. Буферы компенсации джиттера, согласно рекомендации \cite{G1020}, могут быть построены с использованием разных способов, приведенных в табл. \ref{TypeBuff}.
 
-\begin{table} [htbp]
-  \centering
-  \parbox{15cm}{\caption{Типы и параметры буфера компенсации джиттера}\label{TypeBuff}}
-\begin{tabular}{|p{3cm}||p{4cm}|p{4cm}|p{4cm}|}
+
+\begin{longtable}{|p{3cm}||p{4cm}|p{4cm}|p{3.5cm}|}
+\caption{Типы и параметры буфера компенсации джиттера}\label{TypeBuff}
     \hline
     \hline
-    Тип                        & Атрибуты                                                            & \multicolumn{2}{|c|}{Возможности}                                                                                                                                                                    \\ \hline \hline
-    Фиксированный и адаптивный & Размер (конфигурируется максимальная и номинальная или минимальная) & Целое количество пакетов                                                     & Дробное количество пакетов                                                                                             \\ \hline
-\multirow{6}{*}{Адаптивный}    & Управление                                                          & Синхронизированное ослабление при отсутствии переполнения / антипереполнения & Оценить коэффициент потерь (конфигурировать приемлемый наименьший порог и минимальный счет пакетов между подстройками) \\ 
+    Тип                        & Атрибуты                                                            & \multicolumn{2}{|c|}{Возможности}                                                                                                                                                                    \\ \hline 
+    Фиксирован- ный и адаптивный & Размер (конфигурируется максимальная и номинальная или минимальная) & Целое количество пакетов                                                     & Дробное количество пакетов                                                                                            \\  \hline \hline
+    \endfirsthead   \hline
+ \multicolumn{4}{|c|}{\small\slshape (продолжение)}        \\ \hline
+ Тип                        & Атрибуты                                                            & \multicolumn{2}{|c|}{Возможности}                                                                                                                                                                    \\ \hline \hline
+        
+                                              \endhead        \hline
+ \multicolumn{4}{|r|}{\small\slshape продолжение следует}  \\ \hline
+                                              \endfoot        \hline
+                                              \endlastfoot
+\multirow{6}{*}{Адаптивный}    & Управление                                                          & Синхронизиро- ванное ослабление при отсутствии переполнения / антипереполнения & Оценить коэффициент потерь (конфигурировать приемлемый наименьший порог и минимальный счет пакетов между подстройками) \\ 
 \cline{2-4}
-                               & Подстройка                                                          & Синхронизированная                                                           & Только в промежутках молчания                                                                                          \\
+                               & Подстройка                                                          & Синхронизиро- ванная                                                           & Только в промежутках молчания                                                                                          \\
 \cline{2-4}
                                & Инициализация                                                       & Первый пакет                                                                 & Малая выборка                                                                                                          \\ 
 \cline{2-4}
@@ -133,8 +140,8 @@ P[r_s(k)=1]=\varepsilon, P[r_s(k)=0]=1-\varepsilon, ||R_2||>>||R_1||,
 \cline{2-4}
                                & Режим передачи данных в полосе тональных частот                     & Обнаружение тональной частоты 2100 Гц; установка максимальной длины          & Нет                                                                                                                    \\ 
 \hline
-    \end{tabular}
-\end{table}
+    \end{longtable}
+
 
 
 Более подробно рассмотрим параметры построения алгоритма адаптивного буфера компенсации джиттера по методу подстройки задержки воспроизведения, такие как алгоритмы выполняющие коррекцию синхронно и алгоритмы выполняющие коррекцию в промежутках между речевыми потоками. 
@@ -245,7 +252,7 @@ V(k,k-1)=\Phi^TV(k-1)\Phi+N_\xi,
 
 \begin{figure} [h]
   \center
-\includegraphics[width=0.6\textwidth]{3chapter/10.eps}
+\includegraphics[width=0.8\textwidth]{3chapter/10.eps}
   \caption{Схема ФК}
   \label{img3:kalmanF}
 \end{figure}
@@ -262,7 +269,10 @@ V(k|k-1)=\Phi(k-1)V(k-1)\Phi^T(k-1)+N_\xi,
 \end{equation}
 
 \begin{equation}\label{eq3:optim2_4}
-K(k)=V(k|k-1)H^T(k)\{H(k)V(k|k-1)H^T(k)+[1-r_v(k)R_1(k)+r_v(k)R_2(k)\}^{-1},
+\begin{split}
+K(k)=&V(k|k-1)H^T(k)\{H(k)V(k|k-1)H^T(k)+\\
+&+[1-r_v(k)R_1(k)+r_v(k)R_2(k)\}^{-1},
+\end{split}
 \end{equation}
 
 \begin{equation}\label{eq3:optim2_5}
@@ -280,7 +290,10 @@ V(k|k-1)=\Phi(k-1)V(k-1)\Phi^T(k-1)+N_\xi,
 \end{equation}
 
 \begin{equation}\label{eq3:optim3_4}
-K(k)=V(k|k-1)H^T(k)[H(k)V(k|k-1)H^T(k)+(1-\varepsilon)R_1(k)+\varepsilon R_2(k)]^{-1},
+\begin{split}
+K(k)=&V(k|k-1)H^T(k)[H(k)V(k|k-1)H^T(k)+\\
+&+(1-\varepsilon)R_1(k)+\varepsilon R_2(k)]^{-1},
+\end{split}
 \end{equation}
 
 \begin{equation}\label{eq3:optim3_5}
@@ -298,11 +311,17 @@ V(k|k-1)=\Phi(k-1)V(k-1)\Phi^T(k-1)+N_\xi,
 \end{equation}
 
 \begin{equation}\label{eq3:optim4_4}
-K(k)=V(k|k-1)H^T(k)\{H(k)V(k|k-1)H^T(k)+(1-\hat{r}_v(k))R_1(k)+\hat{r}_v(k)R_2(k)\}^{-1},
+\begin{split}
+K(k)=&V(k|k-1)H^T(k)\{H(k)V(k|k-1)H^T(k)+\\
+&+(1-\hat{r}_v(k))R_1(k)+\hat{r}_v(k)R_2(k)\}^{-1},
+\end{split}
 \end{equation}
 
 \begin{equation}\label{eq3:optim4_5}
-V(k)=[I-K(k-1)H(k)]V(k,k-1)[I-K(k-1)H(k)]^T+K(k)R_1(k)K^T(k).
+\begin{split}
+V(k)=&[I-K(k-1)H(k)]V(k,k-1)[I-K(k-1)H(k)]^T+\\
+&+K(k)R_1(k)K^T(k).
+\end{split}
 \end{equation}
 
 \begin{equation}
@@ -355,14 +374,14 @@ D(k)=[B^TV^{-1}(k)B]^{-1},
 \end{equation}
 
 \begin{equation}\label{eq3:optim5_8}
-l(k)=\Delta y^TV^{-1}(k)B[B^TV^{-1}(k)B]^{_1}B^TV^{-1}(k)\Delta y,
+l(k)=\Delta y^TV^{-1}(k)B[B^TV^{-1}(k)B]^{-1}B^TV^{-1}(k)\Delta y,
 \end{equation}
 
 Из анализа этих алгоритмов \cite{Klekis} отметим что алгоритмы (\ref{eq3:optim4})-(\ref{eq3:optim4_5}) и (\ref{eq3:optim5})-(\ref{eq3:optim5_8}) уступают по точности оптимальному фильтру, но дают более точные оценки, чем ФК.
 Ососбенно это характерно в случае мощных выбросов.
 По точности алгоритмы (\ref{eq3:optim4})-(\ref{eq3:optim4_5}) и (\ref{eq3:optim5})-(\ref{eq3:optim5_8}) различаются не занчительно, однако в отличии от первого второй не требует информации о характеристиках выбросов
 
-\begin{table} [htbp]
+\begin{table} [h]
   \centering
   \parbox{15cm}{\caption{Дисперсия ошибок оценивания в момент $k=20$. $\sigma_{OPT}^2$ - для оптимального фильтра (\ref{eq3:optim2})-(\ref{eq3:optim2_5}), $\sigma_{LIN}^2$ - для линейного фильтра (\ref{eq3:optim3})-(\ref{eq3:optim3_5}), $\sigma_{KAL}^2$ - для ФК, $\sigma_{RB1}^2$ - для алгоритма (\ref{eq3:optim4})-(\ref{eq3:optim4_5}), $\sigma_{RB2}^2$ - для алгоритма (\ref{eq3:optim5})-(\ref{eq3:optim5_8}) \cite{Klekis}} \label{disp_opt}} 
 \begin{center}
@@ -393,6 +412,7 @@ $R_1=1$ & $\varepsilon$ & $R_2$ & $\sigma_{OPT}^2$ & $\sigma_{LIN}^2$ & $\sigma_
 Для решения этих недостатков рассмотрим ряд алгоритмов из \cite{RobustFilter}.
 
 \subsection{Робастный фильтр Калмана (РФК) для ситуации выброса} \label{sect3_5_1}
+
 Алгоритм РФК для ситуации выброса согласно рекомендации \cite{RobustFilter} выглядит следующим образом:
 
 \begin{equation}\label{eq3:skachok}
@@ -409,7 +429,10 @@ $R_1=1$ & $\varepsilon$ & $R_2$ & $\sigma_{OPT}^2$ & $\sigma_{LIN}^2$ & $\sigma_
 Алгоритм РФК для ситуации скачка согласно рекомендации \cite{RobustFilter} выглядит следующим образом:
 
 \begin{equation}\label{eq3:vibros}
-\hat{x}(k+1)=\Phi(k+1,k)\hat{x}(k)+H(k)[I-H(k)K(k)\Delta y] min\left\{1,\frac{b}{|I-H(k)K(k)\Delta y|}\right\},
+\begin{split}
+\hat{x}(k+1)=&\Phi(k+1,k)\hat{x}(k)+H(k)[I-H(k)K(k)\Delta y]\times \\
+&\times min\left\{1,\frac{b}{|I-H(k)K(k)\Delta y|}\right\},
+\end{split}
 \end{equation}
 
 \noindent где $b$ тот же аргумент, ограничивающий изменение значения функции, что и для РФК для ситуации выброса (\ref{eq3:skachok}).
@@ -437,7 +460,7 @@ mark options={scale=0.5},
 ylabel={Mem [GB]},
 legend style={
 %area legend,
-at={(0.5,-0.15)},
+at={(0.5,-0.20)},
 anchor=north,
 legend columns=3},
 legend cell align=left,
@@ -458,7 +481,7 @@ xmax=300
   \label{img3:filterIdeal}
 \end{figure}
 
-\pgfplotsset{width=15cm, height=10cm, compat=1.3}
+\pgfplotsset{width=15cm, height=9cm, compat=1.3}
 \begin{figure} [h]
   \center
 \begin{tikzpicture}
@@ -469,7 +492,7 @@ mark options={scale=0.5},
 ylabel={Mem [GB]},
 legend style={
 %area legend,
-at={(0.5,-0.15)},
+at={(0.5,-0.2)},
 anchor=north,
 legend columns=3},
 legend cell align=left,
@@ -492,7 +515,7 @@ xmax=40
 
 
 
-\pgfplotsset{width=15cm, height=10cm, compat=1.3}
+\pgfplotsset{width=15cm, height=9cm, compat=1.3}
 \begin{figure} [h]
   \center
 \begin{tikzpicture}
@@ -503,7 +526,7 @@ mark options={scale=0.5},
 ylabel={Mem [GB]},
 legend style={
 %area legend,
-at={(0.5,-0.15)},
+at={(0.5,-0.2)},
 anchor=north,
 legend columns=3},
 legend cell align=left,
@@ -537,7 +560,7 @@ mark options={scale=0.5},
 ylabel={Mem [GB]},
 legend style={
 %area legend,
-at={(0.5,-0.15)},
+at={(0.5,-0.2)},
 anchor=north,
 legend columns=3},
 legend cell align=left,
@@ -565,7 +588,7 @@ xmax=480
 
 
 
-\begin{table} [htbp]
+\begin{table} [h]
   \centering
   \parbox{15cm}{\caption{Типы и параметры буфера компенсации джиттера}\label{fkDiffSit}}
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -594,7 +617,8 @@ xmax=480
 
 \begin{equation}\label{eq3:syntes1}
 \begin{split}
-\hat{x}(k+1)=&(1-\eta) \Phi(k+1,k)\hat{x}(k)+K(k)\Delta y\cdot min\left\{1,\frac{b}{|K(k)\Delta y|}\right\}+\eta \Phi(k+1,k)\hat{x}(k)+\\
+\hat{x}(k+1)=&(1-\eta) \Phi(k+1,k)\hat{x}(k)+K(k)\Delta y\times \\
+&\times min\left\{1,\frac{b}{|K(k)\Delta y|}\right\}+\eta \Phi(k+1,k)\hat{x}(k)+\\
 &+H(k)[I-H(k)K(k)\Delta y] min\left\{1,\frac{b}{|I-H(k)K(k)\Delta y|}\right\},
 \end{split}
 \end{equation}
@@ -608,9 +632,9 @@ xmax=480
 \end{equation}
 \noindent где $cond(k)$ - функция, которая определяет произошел ли скачок задержки в окне наблюдения или нет:
 \begin{verbatim}
- 1  def cond(arr, w, b):  # язык программирования python2.7
- 2    try:  # проверка, что количество элементов в массиве не меньше,
- 3          # чем окно наблюдения
+ 1  def cond(arr, w, b):  
+ 2    try:  # проверка, что количество элементов 
+ 3          # в массиве не меньше, чем окно наблюдения
  4      arr[-w] 
  5    except IndexError:
  6      return False

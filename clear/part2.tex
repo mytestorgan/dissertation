@@ -8,7 +8,7 @@
 
 
 Различные типы джиттера, являются следствием различных сетевых ситуаций. В этом разделе будут рассмотрены основные причины возникновения различных типов джиттера в проводной и беспроводной сети. Для более простой записи в дальнейшем вместо названия типов джиттера, определенных выше, будем использовать <<тип 1>>, <<тип 2>> и <<тип 3>> соответственно.
-\clearpage
+
 \begin{figure} [!h] 
   \center
 \includegraphics{3typeJitter.eps}
@@ -87,7 +87,7 @@
 
 \begin{figure} [h]
   \center
-\includegraphics{hand.eps}
+\includegraphics{hand-eps-converted-to.pdf}
   \caption{Изменение задержки прибытия пакетов при хэндовере между базовыми станциями}
   \label{img:hand}
 \end{figure}
@@ -120,13 +120,28 @@ BER=0.00005.
 
 \clearpage
 
-\begin{table} [htb]
-  \centering
-\parbox{15cm}{\caption{Соотношение спектральной эффективности ($\eta_{i}$) к индексу MCS ($I_{MCS}$)}\label{MCS_spectr}}
-\begin{tabular}{|l|l|l|l|}
+
+\begin{longtable}{|l|l|l|l|}
+\caption{Соотношение спектральной эффективности ($\eta_{i}$) к индексу MCS ($I_{MCS}$)}\label{MCS_spectr}
  \hline
  \hline
-Спектральная эффективность($\eta_{i}$) & $Q_{m}$ & $R$        & MCS индекс ($I_{MCS}$) \\ \hline \hline 
+Спектральная эффективность($\eta_{i}$) & $Q_{m}$ & $R$        & MCS индекс ($I_{MCS}$) \\ \hline \hline
+
+
+
+    \endfirsthead   \hline
+ \multicolumn{4}{|c|}{\small\slshape (продолжение)}        \\ \hline
+Спектральная эффективность($\eta_{i}$) & $Q_{m}$ & $R$        & MCS индекс ($I_{MCS}$)   \\ \hline \hline
+        
+                                              \endhead        \hline
+ \multicolumn{4}{|r|}{\small\slshape продолжение следует}  \\ \hline
+                                              \endfoot        \hline
+                                              \endlastfoot
+
+
+
+
+
 \multicolumn{3}{|l|}{Reserved}  & 0 \\  \hline
     0.15234375     & 2  & 0.076172 & 1       \\ \hline
     0.193359375    & 2  & 0.09668  & 2       \\ \hline
@@ -159,8 +174,8 @@ BER=0.00005.
     5.5546875      & 6  & 0.925781 & 29      \\ \hline
     2.4            & 2  & 1.2      & 30      \\ \hline
 \multicolumn{3}{|l|}{Reserved}  & 31 \\  \hline
-    \end{tabular}
-\end{table}
+    \end{longtable}
+
 
 \clearpage
 
@@ -410,7 +425,7 @@ x dir=reverse
 \begin{table} [htb]
   \centering
 \parbox{15cm}{\caption{Расширенная А модель пешехода (ЕРА) \cite{TS36104}}\label{EPA}}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|p{7cm}|p{7cm}|}
     \hline
     \hline
     Задержка за счет отклонения от трассы в нс &  Соответсвующая мощность в дБ \\ \hline \hline
@@ -428,7 +443,7 @@ x dir=reverse
 \begin{table} [htb]
   \centering
 \parbox{15cm}{\caption{Расширенная А-модель при движении при движении в автомобиле (EVA) \cite{TS36104}}\label{EVA}}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|p{7cm}|p{7cm}|}
     \hline
     \hline
     Задержка за счет отклонения от трассы в нс &  Соответсвующая мощность в дБ \\ \hline \hline
@@ -448,7 +463,7 @@ x dir=reverse
 \begin{table} [htb]
   \centering
 \parbox{15cm}{\caption{Расширенная модель для типовой городской застройки (ETU) \cite{TS36104}}\label{ETU}}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|p{7cm}|p{7cm}|}
     \hline
     \hline
     Задержка за счет отклонения от трассы в нс &  Соответсвующая мощность в дБ \\ \hline \hline
@@ -469,7 +484,7 @@ x dir=reverse
 \begin{table} [htb]
   \centering
 \parbox{15cm}{\caption{Профили задержек для технологии LTE \cite{iks}}\label{ProfileDelay}}
-    \begin{tabular}{|p{5cm}|p{3cm}|p{3cm}|p{4cm}|}
+    \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{4cm}|}
     \hline \hline
     Модель                                                            &  Количество путей в канале &  Разброс задержки в нс &  Максимальная задержка по траектории в нс \\ \hline \hline
     Расширенная А-модель пешехода (ЕРА)                               & 7                          & 45                     & 410                                       \\ \hline
@@ -628,7 +643,7 @@ ylabel=Джиттер (мс),
 \caption{Зависимость джиттера от расстояния между абонентом и базовой станцией при замираниях}
   \label{img2:fad_dj}
 \end{figure}
-
+\clearpage
 
 \pgfplotsset{width=15cm, height=7cm, compat=1.3}
 \begin{figure} [!h]
@@ -659,7 +674,7 @@ ylabel=Пакетные потери (\%),
   \label{img2:fad_drop}
 \end{figure}
 
-\clearpage
+
 
 
 \section{Выводы ко \ref{chapt2} разделу} \label{sect:concl2}
