@@ -135,7 +135,7 @@ V(k,k-1)=\Phi^TV(k-1)\Phi+N_\xi,
 
 \begin{figure} [h]
   \center
-\includegraphics[width=0.8\textwidth]{3chapter/10.eps}
+\includegraphics[width=0.8\textwidth]{3chapter/output2.eps}
   \caption{Схема ФК}
   \label{img3:kalmanF}
 \end{figure}
@@ -302,7 +302,7 @@ $R_1=1$ & $\varepsilon$ & $R_2$ & $\sigma_{OPT}^2$ & $\sigma_{LIN}^2$ & $\sigma_
 
 \section{Обзор робастных алгоритмов фильтрации на основе фильтра Калмана для случайных процессов содержащих выбросы и скачки} \label{sect3_grfk}
 
-\textbf{1. Алгоритм РФК для случайного процесса, содержащего выбросы,} согласно \cite{RobustFilter} выглядит следующим образом:
+\textbf{1. Алгоритм РФК для случайного процесса, содержащего выбросы,} согласно \cite{RobustFilter} выглядит следующим образом (рис. \ref{img3:kalmanV}):
 
 \begin{equation}\label{eq3:skachok}
 \hat{x}(k+1)=\Phi(k+1,k)\hat{x}(k)+K(k)\Delta y\cdot min\left\{1,\frac{b}{|K(k)\Delta y|}\right\},
@@ -313,8 +313,14 @@ $R_1=1$ & $\varepsilon$ & $R_2$ & $\sigma_{OPT}^2$ & $\sigma_{LIN}^2$ & $\sigma_
 
 Если $b\geq |K(k) \Delta y |$, то $min\left\{1,\frac{b}{|K(k)\Delta y|}\right\}$ принимает значение 1 и фильтр работает в обычном режиме как ФК (\ref{eq3:Estim_rel}). Если же $b\leq |K(k) \Delta y |$, то из этого следует, что произошел выброс и невязка умножается на понижающий коэффициент, равный $\frac{b}{|K(k)\Delta y|}$, что опять же приводит РФК к обычному виду (\ref{eq3:Estim_rel}).
 
+\begin{figure} [h]
+  \center
+\includegraphics[width=0.8\textwidth]{3chapter/output.eps}
+  \caption{Схема РФК для фильтрации случайных процессов содержащих выбросы}
+  \label{img3:kalmanV}
+\end{figure}
 
-\textbf{2. Алгоритм РФК для случайного процесса, содержащего скачки,} согласно \cite{RobustFilter} выглядит следующим образом:
+\textbf{2. Алгоритм РФК для случайного процесса, содержащего скачки,} согласно \cite{RobustFilter} выглядит следующим образом (рис. \ref{img3:kalmanS}):
 
 \begin{equation}\label{eq3:vibros}
 \begin{split}
@@ -324,6 +330,14 @@ $R_1=1$ & $\varepsilon$ & $R_2$ & $\sigma_{OPT}^2$ & $\sigma_{LIN}^2$ & $\sigma_
 \end{equation}
 
 \noindent где $b$ тот же аргумент, ограничивающий изменение значения функции, что и для РФК для ситуации выброса (\ref{eq3:skachok}).
+
+
+\begin{figure} [h]
+  \center
+\includegraphics[width=0.8\textwidth]{3chapter/output1.eps}
+  \caption{Схема РФК для фильтрации случайных процессов содержащих скачки}
+  \label{img3:kalmanS}
+\end{figure}
 
 \textbf{3. Гибридный робастный фильтр Калмана (ГРФК)}
 
