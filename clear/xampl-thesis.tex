@@ -5,7 +5,6 @@
 
 
 
-
 \usepackage[T2A]{fontenc}
 \usepackage[utf8x]{inputenc}
 \usepackage[english,russian]{babel}
@@ -44,14 +43,17 @@
 \usetikzlibrary{chains}
 \usepackage{epstopdf}
 
-\usepackage{txfonts}
+%\usepackage{txfonts}
 \usetikzlibrary{matrix}
 
 
 \usepackage{color}
 \usepackage{colortbl}
 
-
+% Список сокращений
+\usepackage[russian]{nomencl}
+\makenomenclature
+%\renewcommand{\nomname}{\centerline{Список условных сокращений}}
 
 %%% Таблицы %%%
 \usepackage{longtable}					% Длинные таблицы
@@ -81,11 +83,12 @@
 
 \input{title}
 \input{contents}
+\printnomenclature
 \input{introduction}
 \input{part1}
-%\input{part2}
-%\input{part3}
-%\input{part4}
+\input{part2}
+\input{part3}
+\input{part4}
 \input{references}		% Список литературы
 %\input{lists}
 

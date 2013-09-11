@@ -1,0 +1,68 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{CDMA}]\begingroup Code Division Multiple Access\nomeqref {1.0}
+		\nompageref{14}
+  \item [{EDGE}]\begingroup Enhanced Data rates for GSM Evolution\nomeqref {1.0}
+		\nompageref{14}
+  \item [{eNB}]\begingroup E-UTRAN Node B\nomeqref {2.4}\nompageref{57}
+  \item [{EPA}]\begingroup Extended Pedestrian A Model\nomeqref {2.4}
+		\nompageref{57}
+  \item [{ETU}]\begingroup Extended Typical Urban model\nomeqref {2.4}
+		\nompageref{57}
+  \item [{EVA}]\begingroup Extended Vehicular A Model\nomeqref {2.4}
+		\nompageref{57}
+  \item [{FTP}]\begingroup File Transfer Protocol\nomeqref {2.4}
+		\nompageref{50}
+  \item [{GSM}]\begingroup Global System for Mobile communications\nomeqref {1.0}
+		\nompageref{14}
+  \item [{HSPA}]\begingroup High Speed Packet Access\nomeqref {1.0}
+		\nompageref{14}
+  \item [{IETF}]\begingroup Internet Engineering Task Force\nomeqref {1.0}
+		\nompageref{14}
+  \item [{IMS}]\begingroup IP Multimedia Core Network Subsystem\nomeqref {1.0}
+		\nompageref{14}
+  \item [{IPTV}]\begingroup Internet Protocol Television\nomeqref {1.0}
+		\nompageref{14}
+  \item [{LTE}]\begingroup Long Term Evolution\nomeqref {1.0}
+		\nompageref{14}
+  \item [{MCS}]\begingroup Modulation and Coding Scheme\nomeqref {2.4}
+		\nompageref{53}
+  \item [{MIMO}]\begingroup Multiple-Input and Multiple-Output\nomeqref {2.4}
+		\nompageref{55}
+  \item [{NGN}]\begingroup Next-Generation Network\nomeqref {1.0}
+		\nompageref{11}
+  \item [{NS3}]\begingroup Network Simulator 3\nomeqref {2.0}
+		\nompageref{46}
+  \item [{OFDM}]\begingroup Orthogonal Frequency-Division Multiplexing\nomeqref {2.4}
+		\nompageref{57}
+  \item [{QoS}]\begingroup Quality of Service\nomeqref {1.0}
+		\nompageref{12}
+  \item [{SINR}]\begingroup Signal to Interference plus Noise Ratio\nomeqref {2.4}
+		\nompageref{53}
+  \item [{SIP}]\begingroup Session Initiation Protocol\nomeqref {1.0}
+		\nompageref{14}
+  \item [{TB}]\begingroup Transport Block\nomeqref {2.4}\nompageref{53}
+  \item [{TD-SCDMA}]\begingroup Time Division Synchronous Code Division Multiple Access\nomeqref {1.0}
+		\nompageref{14}
+  \item [{VoIP}]\begingroup Voice over Internet Protocol\nomeqref {1.0}
+		\nompageref{14}
+  \item [{WCDMA}]\begingroup Wideband Code Division Multiple Access\nomeqref {1.0}
+		\nompageref{14}
+  \item [{WiMAX}]\begingroup Worldwide interoperability for Microwave Access\nomeqref {1.0}
+		\nompageref{14}
+  \item [{xDSL}]\begingroup family of technologies Digital Subscriber Line\nomeqref {1.0}
+		\nompageref{15}
+  \item [{ГРФКБ}]\begingroup Гибридный Робастный Фильтр Калмана-Бьюси\nomeqref {3.38}
+		\nompageref{81}
+  \item [{ПА}]\begingroup Потоковый Агент\nomeqref {3.40}
+		\nompageref{86}
+  \item [{РФКБ}]\begingroup Робастный Фильтр Калмана-Бьюси\nomeqref {3.36}
+		\nompageref{80}
+  \item [{СКО}]\begingroup Средний Квадрат Отклонений\nomeqref {3.40}
+		\nompageref{86}
+  \item [{ФКБ}]\begingroup Фильтр Калмана-Бьюси\nomeqref {3.8}
+		\nompageref{73}
+
+\end{thenomenclature}
