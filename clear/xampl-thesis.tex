@@ -29,6 +29,34 @@
 % Таблиці зі стовпчиками, що розтягуються
 \usepackage{tabularx}
 
+
+\usepackage{signalflowdiagram}
+\usetikzlibrary{dsp}
+
+
+
+
+
+% Define two simple circuit schematics symbols
+\def\antenna{%
+    -- +(0mm,4.0mm) -- +(2.625mm,7.5mm) -- +(-2.625mm,7.5mm) -- +(0mm,4.0mm)
+}
+
+\def\ground{%
+    -- +(0mm,-4.0mm) {
+        [yshift=-4mm]
+        +(-2mm,0mm) -- +(2mm,0mm)
+                +(-1mm,-1mm) -- +(1mm,-1mm)
+                +(-0.3mm,-2mm) -- +(0.3mm,-2mm)
+        }
+}
+
+
+
+
+
+
+
 % Налагодження параметрів сторінки (зокрема берегів).
 % Наприклад, за допомогою пакета geometry
 \usepackage{geometry}
@@ -39,6 +67,7 @@
 \usepackage{cite}
 \usepackage{tikz}
 \usepackage{graphicx}
+\usetikzlibrary{calc}
 
 \usetikzlibrary{chains}
 \usepackage{epstopdf}
@@ -80,18 +109,20 @@
  % For axes
 \scalebox{1} 
 
+\usepackage{euscript}
+
 \begin{document}
 \input{names}
 
 \input{title}
 \input{contents}
 \printnomenclature
-%\input{introduction}
-%\input{part1}
-%\input{part2}
-%\input{part3}
+\input{introduction}
+\input{part1}
+\input{part2}
+\input{part3}
 \input{part4}
-%\input{part5}
+\input{part5}
 \input{references}		% Список литературы
 %\input{lists}
 
