@@ -29,34 +29,6 @@
 % Таблиці зі стовпчиками, що розтягуються
 \usepackage{tabularx}
 
-
-\usepackage{signalflowdiagram}
-\usetikzlibrary{dsp}
-
-
-
-
-
-% Define two simple circuit schematics symbols
-\def\antenna{%
-    -- +(0mm,4.0mm) -- +(2.625mm,7.5mm) -- +(-2.625mm,7.5mm) -- +(0mm,4.0mm)
-}
-
-\def\ground{%
-    -- +(0mm,-4.0mm) {
-        [yshift=-4mm]
-        +(-2mm,0mm) -- +(2mm,0mm)
-                +(-1mm,-1mm) -- +(1mm,-1mm)
-                +(-0.3mm,-2mm) -- +(0.3mm,-2mm)
-        }
-}
-
-
-
-
-
-
-
 % Налагодження параметрів сторінки (зокрема берегів).
 % Наприклад, за допомогою пакета geometry
 \usepackage{geometry}
@@ -68,12 +40,15 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usetikzlibrary{calc}
+\usetikzlibrary{dsp,chains}
+\usepackage{tikz-timing}
+\usetikztiminglibrary[new={char=Q,reset char=R}]{counters}
 
-\usetikzlibrary{chains}
+
 \usepackage{epstopdf}
 
 %\usepackage{txfonts}
-\usetikzlibrary{matrix}
+%\usetikzlibrary{matrix}
 
 
 \usepackage{color}
@@ -105,13 +80,13 @@
     citecolor={citecolor}, urlcolor={urlcolor}
 }
 
-\usepackage[usenames,dvipsnames]{pstricks}
+%\usepackage[usenames,dvipsnames]{pstricks}
  % For axes
-\scalebox{1} 
+%\scalebox{1} 
 
 \usepackage{euscript}
 
-\begin{document}
+ \begin{document}
 \input{names}
 
 \input{title}
@@ -123,6 +98,7 @@
 \input{part3}
 \input{part4}
 \input{part5}
+\input{conclusions}
 \input{references}		% Список литературы
 %\input{lists}
 

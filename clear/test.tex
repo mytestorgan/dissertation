@@ -1,97 +1,84 @@
+% Library for block diagrams and signal flow graphs
+% Author: Matthias Hotz
 \documentclass{article}
-\usepackage{signalflowdiagram}
+\usepackage{tikz}
+\usetikzlibrary{dsp,chains}
+
+
 \begin{document}
+% FIR filter as block diagram
+\begin{tikzpicture}
 
-%
-% Basic definitions of the symbols used in a signal flow diagram
-%
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=2.5mm, column sep=5signalflowdiagrammm]
+	{
+		%--------------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m00) {$x[n]$};    &
+		\node[coordinate]                  (m01) {};          &
+		\node[dspnodefull]                 (m02) {};          &
+		\node[dspsquare]                   (m03) {$z^{-1}$}; &
+		\node[dspnodefull]                 (m04) {};          &
+		\node[dspsquare]                   (m05) {$z^{-1}$}; &
+		\node[dspnodefull]                 (m06) {};          &
+		\node[dspsquare]                   (m07) {$z^{-1}$}; &
+		\node[coordinate]                  (m08) {};          &
+		\node[coordinate]                  (m09) {};          &
+		\node[coordinate]                  (m0X) {};          \\
+		%--------------------------------------------------------------------
+		\node[coordinate]                  (m10) {};          &
+		\node[coordinate]                  (m11) {};          &
+		\node[dspmixer, dsp/label=right]   (m12) {$h[0]$};    &
+		\node[coordinate]                  (m13) {};          &
+		\node[dspmixer, dsp/label=right]   (m14) {$h[1]$};    &
+		\node[coordinate]                  (m15) {};          &
+		\node[dspmixer, dsp/label=right]   (m16) {$h[2]$};    &
+		\node[coordinate]                  (m17) {};          &
+		\node[dspmixer, dsp/label=right]   (m18) {$h[3]$};    &
+		\node[coordinate]                  (m19) {};          &
+		\node[coordinate]                  (m1X) {};          \\
+		%--------------------------------------------------------------------
+		\\
+		%--------------------------------------------------------------------
+		\node[coordinate]                  (m20) {};          &
+		\node[coordinate]                  (m21) {};          &
+		\node[coordinate]                  (m22) {};          &
+		\node[coordinate]                  (m23) {};          &
+		\node[dspadder]                    (m24) {};          &
+		\node[coordinate]                  (m25) {};          &
+		\node[dspadder]                    (m26) {};          &
+		\node[coordinate]                  (m27) {};          &
+		\node[dspadder]                    (m28) {};          &
+		\node[coordinate]                  (m29) {};          &
+		\node[dspnodeopen,dsp/label=above] (m2X) {$y[n]$};    \\
+		%--------------------------------------------------------------------
+	};
 
-% - input and output terminal
-\begin{signalflow}{Terminals and branches}
-    % - input terminal
-    \begin{scope}
-        \node[input]      (in)                 {$x(t)$};
-        \node[coordinate] (c)  [right from=in] {};
-        % signal path
-        \path[r>] (in) -- (c);
-    \end{scope}
-    % - output terminal
-    \begin{scope}[xshift=3cm]
-        \node[output]     (out)                {$y(t)$};
-        \node[coordinate] (c)  [left from=out] {};
-        % signal path
-        \path[r>] (c) -- (out);
-    \end{scope}
-    % - branching node
-    \begin{scope}[yshift=-2cm]
-        \node[input]  (in)                          {$x(t)$};
-        \node[node]   (nd)    [right from=in]       {};
-        \node[output] (out1)  [above right from=nd] {$x(t)$};
-        \node[output] (out2)  [below right from=nd] {$x(t)$};
-        % signal paths
-        \path[r>] (in) -- (nd);
-        \path[r>] (nd) |- (out1);
-        \path[r>] (nd) |- (out2);
-    \end{scope}
-\end{signalflow}
+	% Draw connections
+	
+	\begin{scope}[start chain]
+		\chainin (m00);
+		\chainin (m02) [join=by dspflow];
+		\chainin (m12) [join=by dspconn];
+		\chainin (m22) [join=by dspline];
+	\end{scope}
 
-\begin{signalflow}{Multiplier and adder}
-    % - multiplier
-    \begin{scope}
-        \node[input]      (in)                     {$x(t)$};
-        \node[multiplier] (mul) [right from=in]  {\nodepart{above}{$\alpha$}};
-        \node[output]     (out) [right from=mul] {$\alpha x(t)$};
-        % signal paths
-        \path[r>] (in)  -- (mul);
-        \path[r>] (mul) -- (out);
-    \end{scope}
-    % - adder
-    \begin{scope}[xshift=5cm]
-        \node[adder]  (add)                       {};
-        \node[input]  (in1) [above left from=add] {$x_1(t)$};
-        \node[input]  (in2) [below left from=add] {$x_2(t)$};
-        \node[output] (out) [right from=add]      {$x_1(t)+x_2(t)$};
-        % signal paths
-        \path[r>] (in1) -| (add);
-        \path[r>] (in2) -| (add);
-        \path[r>] (add) -- (out);
-   \end{scope}
-\end{signalflow}
+	\foreach \i [evaluate = \i as \j using int(\i+1),
+	             evaluate = \i as \k using int(\i+2),] in {2,4,6}
+	{
+		\begin{scope}[start chain]
+			\chainin (m0\i);
+			\chainin (m0\j) [join=by dspconn];
+			\chainin (m0\k) [join=by dspline];
+			\chainin (m1\k) [join=by dspconn];
+			\chainin (m2\k) [join=by dspconn];
+		\end{scope}
+		\draw[dspconn] (m2\i) -- (m2\k);
+	}
 
-
-% - modulator
-\begin{signalflow}{Modulator}
-   \node[modulator] (mul)                       {};
-   \node[input]     (in1) [above left from=mul] {$x_1(t)$};
-   \node[input]     (in2) [below left from=mul] {$x_2(t)$};
-   \node[output]    (out) [right from=mul]      {$x_1(t)x_2(t)$};
-   % signal paths
-   \path[r>] (in1) -| (mul);
-   \path[r>] (in2) -| (mul);
-   \path[r>] (mul) -- (out);
-\end{signalflow}
-
-\begin{signalflow}{Delay element and filter}
-    % - delay element
-    \begin{scope}
-        \node[input]  (in)                   {$x(t)$};
-        \node[delay]  (del) [right from=in]  {$T$};
-        \node[output] (out) [right from=del] {$x(t-T)$};
-        % signal paths
-        \path[r>] (in)  -- (del);
-        \path[r>] (del) -- (out);
-    \end{scope}
-    % - filter
-    \begin{scope}[xshift=5cm]
-        \node[input]  (in)                   {$x(t)$};
-        \node[filter] (fil) [right from=in]  {$q(t)$};
-        \node[output] (out) [right from=fil] {$x(t)\ast q(t)$};
-        % signal paths
-        \path[r>] (in)  -- (fil);
-        \path[r>] (fil) -- (out);
-   \end{scope}
-\end{signalflow}
+	\draw[dspflow] (m28) -- (m2X);
 
 
+
+\end{tikzpicture}
 
 \end{document}
