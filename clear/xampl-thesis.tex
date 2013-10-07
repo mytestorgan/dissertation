@@ -80,6 +80,9 @@
 
 \usepackage{listings}
 \usepackage{euscript}
+
+\pgfkeys{/pgf/number format/.cd,precision=6,use comma,fixed,1000 sep={}}
+
 \begin{document}
 \input{names}
 
@@ -87,11 +90,12 @@
 \input{contents}
 \printnomenclature
 \input{introduction}
-%\input{part1}
-%\input{part2}
-%\input{part3}
-%\input{part4}
-%\input{part5}
+\input{part1}
+\input{part2}
+\input{part3}
+\input{part4}
+\input{part5}
+%\input{test}
 \input{conclusions}
 \input{references}		% Список литературы
 %\input{appendix}
