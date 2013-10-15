@@ -3,22 +3,22 @@
  \nomgroup{A}
 
   \item [{3GPP}]\begingroup 3rd Generation Partnership Project\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{CDMA}]\begingroup Code Division Multiple Access\nomeqref {1.0}
 		\nompageref{14}
   \item [{EDGE}]\begingroup Enhanced Data rates for GSM Evolution\nomeqref {1.0}
 		\nompageref{14}
   \item [{eNB}]\begingroup E-UTRAN Node B\nomeqref {2.4}\nompageref{53}
   \item [{eNB}]\begingroup evolved Node B\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{EPA}]\begingroup Extended Pedestrian A Model\nomeqref {2.4}
 		\nompageref{53}
   \item [{EPC}]\begingroup Evolved Packet Core\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{ePS}]\begingroup evolved Packet System\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{EQRS}]\begingroup Extended QoS-based Routing Simulator\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{ETU}]\begingroup Extended Typical Urban model\nomeqref {2.4}
 		\nompageref{53}
   \item [{EVA}]\begingroup Extended Vehicular A Model\nomeqref {2.4}
@@ -28,7 +28,7 @@
   \item [{GSM}]\begingroup Global System for Mobile communications\nomeqref {1.0}
 		\nompageref{14}
   \item [{GTP}]\begingroup GPRS Tunnelling Protocol\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{HSPA}]\begingroup High Speed Packet Access\nomeqref {1.0}
 		\nompageref{14}
   \item [{IETF}]\begingroup Internet Engineering Task Force\nomeqref {1.0}
@@ -36,47 +36,45 @@
   \item [{IMS}]\begingroup IP Multimedia Core Network Subsystem\nomeqref {1.0}
 		\nompageref{14}
   \item [{IP}]\begingroup Internet Protocol\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{IPTV}]\begingroup Internet Protocol Television\nomeqref {1.0}
 		\nompageref{14}
   \item [{LTE}]\begingroup Long Term Evolution\nomeqref {1.0}
 		\nompageref{14}
   \item [{MAC}]\begingroup Media access control\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{MaRS}]\begingroup Maryland Routing Simulator\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{MCS}]\begingroup Modulation and Coding Scheme\nomeqref {2.4}
 		\nompageref{50}
   \item [{MIMO}]\begingroup Multiple-Input and Multiple-Output\nomeqref {2.4}
 		\nompageref{50}
   \item [{MME}]\begingroup Mobility Management Entity\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{NGN}]\begingroup Next-Generation Network\nomeqref {1.0}
 		\nompageref{11}
   \item [{NS2}]\begingroup Network Simulator 2\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{NS3}]\begingroup Network Simulator 3\nomeqref {2.0}
 		\nompageref{44}
-  \item [{NS3}]\begingroup Network Simulator 3\nomeqref {5.0}
-		\nompageref{101}
   \item [{OFDM}]\begingroup Orthogonal Frequency-Division Multiplexing\nomeqref {2.4}
 		\nompageref{53}
   \item [{P-GW}]\begingroup Packet Data Network Gateway\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{PDCP}]\begingroup Packet Data Convergence Protocol\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{PHY}]\begingroup Physical layer\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{QoS}]\begingroup Quality of Service\nomeqref {1.0}
 		\nompageref{12}
   \item [{RBID}]\begingroup Radio Bearer ID\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{RLC}]\begingroup Radio Link Control\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{RRC}]\begingroup Radio Resource Control\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{S-GW}]\begingroup Serving Gateway\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{SINR}]\begingroup Signal to Interference plus Noise Ratio\nomeqref {2.4}
 		\nompageref{50}
   \item [{SIP}]\begingroup Session Initiation Protocol\nomeqref {1.0}
@@ -85,14 +83,14 @@
   \item [{TD-SCDMA}]\begingroup Time Division Synchronous Code Division Multiple Access\nomeqref {1.0}
 		\nompageref{14}
   \item [{TEID}]\begingroup Tunnel Endpoint ID\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{TFT}]\begingroup Traffic Flow Template\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{TOTEM}]\begingroup TOolbox for Traffic Engineering Methods\nomeqref {5.0}
-		\nompageref{101}
+		\nompageref{102}
   \item [{UDP}]\begingroup User Datagram Protocol\nomeqref {5.0}
-		\nompageref{101}
-  \item [{UE}]\begingroup User Equipment\nomeqref {5.0}\nompageref{101}
+		\nompageref{102}
+  \item [{UE}]\begingroup User Equipment\nomeqref {5.0}\nompageref{102}
   \item [{VoIP}]\begingroup Voice over Internet Protocol\nomeqref {1.0}
 		\nompageref{14}
   \item [{WCDMA}]\begingroup Wideband Code Division Multiple Access\nomeqref {1.0}
@@ -103,8 +101,10 @@
 		\nompageref{15}
   \item [{ГРФКБ}]\begingroup Гибридный Робастный Фильтр Калмана-Бьюси\nomeqref {3.38}
 		\nompageref{78}
+  \item [{МСЭ}]\begingroup Международный Союз Электросвязи\nomeqref {5.0}
+		\nompageref{102}
   \item [{ПА}]\begingroup Потоковый Агент\nomeqref {5.0}
-		\nompageref{117}
+		\nompageref{122}
   \item [{РФКБ}]\begingroup Робастный Фильтр Калмана-Бьюси\nomeqref {3.36}
 		\nompageref{77}
   \item [{СКО}]\begingroup Средний Квадрат Отклонений\nomeqref {3.50}

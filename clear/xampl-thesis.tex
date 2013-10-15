@@ -81,7 +81,7 @@
 \usepackage{listings}
 \usepackage{euscript}
 
-\pgfkeys{/pgf/number format/.cd,precision=6,use comma,fixed,1000 sep={}}
+\usepackage{rotating}
 
 \begin{document}
 \input{names}
@@ -91,6 +91,7 @@
 \printnomenclature
 \input{introduction}
 \input{part1}
+\pgfkeys{/pgf/number format/.cd,precision=6,use comma,fixed,1000 sep={}}
 \input{part2}
 \input{part3}
 \input{part4}
