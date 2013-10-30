@@ -1,0 +1,57 @@
+\nomenclatureentry{aNGN@[{NGN}]\begingroup Next-Generation Network\nomeqref {1.0}|nompageref}{14}
+\nomenclatureentry{aQoS@[{QoS}]\begingroup Quality of Service\nomeqref {1.0}|nompageref}{15}
+\nomenclatureentry{aIPTV@[{IPTV}]\begingroup Internet Protocol Television\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aVoIP@[{VoIP}]\begingroup Voice over Internet Protocol\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aSIP@[{SIP}]\begingroup Session Initiation Protocol\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aIETF@[{IETF}]\begingroup Internet Engineering Task Force\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aLTE@[{LTE}]\begingroup Long Term Evolution\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aWiMAX@[{WiMAX}]\begingroup Worldwide interoperability for Microwave Access\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aIMS@[{IMS}]\begingroup IP Multimedia Core Network Subsystem\nomeqref {1.0}|nompageref}{16}
+\nomenclatureentry{aCDMA@[{CDMA}]\begingroup Code Division Multiple Access\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aHSPA@[{HSPA}]\begingroup High Speed Packet Access\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aWCDMA@[{WCDMA}]\begingroup Wideband Code Division Multiple Access\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aGSM@[{GSM}]\begingroup Global System for Mobile communications\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aEDGE@[{EDGE}]\begingroup Enhanced Data rates for GSM Evolution\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aTD-SCDMA@[{TD-SCDMA}]\begingroup Time Division Synchronous Code Division Multiple Access\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{aШПД@[{ШПД}]\begingroup Широкополоный доступ\nomeqref {1.0}|nompageref}{17}
+\nomenclatureentry{axDSL@[{xDSL}]\begingroup family of technologies Digital Subscriber Line\nomeqref {1.0}|nompageref}{18}
+\nomenclatureentry{aNS3@[{NS3}]\begingroup Network Simulator 3\nomeqref {2.0}|nompageref}{48}
+\nomenclatureentry{aFTP@[{FTP}]\begingroup File Transfer Protocol\nomeqref {2.4}|nompageref}{52}
+\nomenclatureentry{aSINR@[{SINR}]\begingroup Signal to Interference plus Noise Ratio\nomeqref {2.4}|nompageref}{54}
+\nomenclatureentry{aMCS@[{MCS}]\begingroup Modulation and Coding Scheme\nomeqref {2.4}|nompageref}{54}
+\nomenclatureentry{aTB@[{TB}]\begingroup Transport Block\nomeqref {2.4}|nompageref}{54}
+\nomenclatureentry{aMIMO@[{MIMO}]\begingroup Multiple-Input and Multiple-Output\nomeqref {2.4}|nompageref}{57}
+\nomenclatureentry{aeNB@[{eNB}]\begingroup E-UTRAN Node B\nomeqref {2.4}|nompageref}{58}
+\nomenclatureentry{aOFDM@[{OFDM}]\begingroup Orthogonal Frequency-Division Multiplexing\nomeqref {2.4}|nompageref}{58}
+\nomenclatureentry{aEPA@[{EPA}]\begingroup Extended Pedestrian A Model\nomeqref {2.4}|nompageref}{58}
+\nomenclatureentry{aEVA@[{EVA}]\begingroup Extended Vehicular A Model\nomeqref {2.4}|nompageref}{58}
+\nomenclatureentry{aETU@[{ETU}]\begingroup Extended Typical Urban model\nomeqref {2.4}|nompageref}{58}
+\nomenclatureentry{aФКБ@[{ФКБ}]\begingroup Фильтр Калмана-Бьюси\nomeqref {3.8}|nompageref}{75}
+\nomenclatureentry{aРФКБ@[{РФКБ}]\begingroup Робастный Фильтр Калмана-Бьюси\nomeqref {3.36}|nompageref}{81}
+\nomenclatureentry{aГРФКБ@[{ГРФКБ}]\begingroup Гибридный Робастный Фильтр Калмана-Бьюси\nomeqref {3.38}|nompageref}{82}
+\nomenclatureentry{aСКО@[{СКО}]\begingroup Средний Квадрат Отклонений\nomeqref {3.50}|nompageref}{89}
+\nomenclatureentry{aEPC@[{EPC}]\begingroup Evolved Packet Core\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aPHY@[{PHY}]\begingroup Physical layer\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aMAC@[{MAC}]\begingroup Media access control\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aNS2@[{NS2}]\begingroup Network Simulator 2\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aМСЭ@[{МСЭ}]\begingroup Международный Союз Электросвязи\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aTOTEM@[{TOTEM}]\begingroup TOolbox for Traffic Engineering Methods\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aEQRS@[{EQRS}]\begingroup Extended QoS-based Routing Simulator\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aMaRS@[{MaRS}]\begingroup Maryland Routing Simulator\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aRRC@[{RRC}]\begingroup Radio Resource Control\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aPDCP@[{PDCP}]\begingroup Packet Data Convergence Protocol\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aRLC@[{RLC}]\begingroup Radio Link Control\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aUE@[{UE}]\begingroup User Equipment\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aeNB@[{eNB}]\begingroup evolved Node B\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aS-GW@[{S-GW}]\begingroup Serving Gateway\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aP-GW@[{P-GW}]\begingroup Packet Data Network Gateway\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aMME@[{MME}]\begingroup Mobility Management Entity\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{a3GPP@[{3GPP}]\begingroup 3rd Generation Partnership Project\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aGTP@[{GTP}]\begingroup GPRS Tunnelling Protocol\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aUDP@[{UDP}]\begingroup User Datagram Protocol\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aIP@[{IP}]\begingroup Internet Protocol\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aTFT@[{TFT}]\begingroup Traffic Flow Template\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aePS@[{ePS}]\begingroup evolved Packet System\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aTEID@[{TEID}]\begingroup Tunnel Endpoint ID\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aRBID@[{RBID}]\begingroup Radio Bearer ID\nomeqref {5.0}|nompageref}{107}
+\nomenclatureentry{aПА@[{ПА}]\begingroup Потоковый Агент\nomeqref {5.0}|nompageref}{131}
