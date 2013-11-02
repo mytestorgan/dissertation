@@ -10,28 +10,15 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[english,russian]{babel}
 
-% Підключення необхідних пакетів. Наприклад,
-% Пакети AMS для підтримки математики, теорем, спеціальних шрифтів
+
 \usepackage[intlimits]{amsmath}
 \allowdisplaybreaks
 \usepackage{amsthm}
 \usepackage{amssymb}
-% Налагодження нумерованих списків
-%\usepackage{enumerate}
-% Гіпертекстові документи
-%\usepackage{hyperref}
-% або лише спеціальне форматування URL
-%\usepackage{url}
-% У списку літератури зворотні вказівки на посилання
-%\usepackage{backref}
-% Сортування посилань
-%\usepackage[noadjust]{cite}
-% Останні два пакети несумісні між собою. Крім того, конфліктують з цим класом!
-% Таблиці зі стовпчиками, що розтягуються
+
 \usepackage{tabularx}
 
-% Налагодження параметрів сторінки (зокрема берегів).
-% Наприклад, за допомогою пакета geometry
+
 \usepackage{geometry}
 \geometry{hmargin={30mm,15mm},lines=29,vcentering}
 \usepackage{pgfplots}
@@ -51,25 +38,25 @@
 \usepackage{color}
 \usepackage{colortbl}
 
-% Список сокращений
+
 \usepackage[russian]{nomencl}
 \makenomenclature
-%\renewcommand{\nomname}{\centerline{Список условных сокращений}}
 
-%%% Таблицы %%%
-\usepackage{longtable}					% Длинные таблицы
-\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+
+
+\usepackage{longtable}					
+\usepackage{multirow,makecell,array}	
 
 
 \usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
-%%% Библиография %%%
+
 \makeatletter
 %\bibliographystyle{gost71u}
-\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
-\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\bibliographystyle{utf8gost705u}	
+\renewcommand{\@biblabel}[1]{#1.}	
 \makeatother
 
-%%% Цвета гиперссылок %%%
+
 \definecolor{linkcolor}{rgb}{0.9,0,0}
 \definecolor{citecolor}{rgb}{0,0.6,0}
 \definecolor{urlcolor}{rgb}{0,0,1}
@@ -108,9 +95,9 @@
 \input{part3}
 \input{part4}
 \input{part5}
-\input{test}
+%\input{test}
 \input{conclusions}
-\input{references}		% Список литературы
+\input{references}		
 %\input{appendix}
 
 \end{document}
