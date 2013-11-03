@@ -7,24 +7,60 @@
 
 \usepackage{amssymb,amsmath}
 
-\usetheme{Berkeley}
+\usetheme[numbers, totalnumbers, minimal, nologo]{Statmod}
 %\useoutertheme{dove}
 \usecolortheme{dove}
 %\usecolortheme[named=Brown]{structure} 
 %\usecolortheme[RGB={205,173,0}]{structure} 
 
 
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{listings}
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=25pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=20pt,left,#1]{author}
+      \usebeamerfont{author}\insertauthor
+      
+    \end{beamercolorbox}
+
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+
 \graphicspath{{images/}}
 
 %\usefonttheme[onlymath]{serif}
-\title[\theme]{Синтез математической модели \\
-джиттера прибытия пакетов}
+\title[\theme]{Методы повышения качества обслуживания на основе потоковых агентов на стыке мобильных и стационарных сетей}
 
-\author[Кобрин А. В.]{Кобрин Артем Витальевич}
-\institute[ХНУРЭ]{Харьковский Национальный Университет Радиоэлектроники\\
-	{\tiny Кафедра ТКС}\\
-}
-\date{2013}
+\author[Кобрин А. В.]{Аспирант: \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+ \ \ \ \ \ \ Научный руководитель: \\Кобрин А. В. \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+ \ д.т.н., проф. Поповский В.В.}
+\institute[ХНУРЭ]{Харьковский Национальный Университет Радиоэлектроники}
+\date{Харьков 2013}
 \begin{document}
 
 
@@ -34,53 +70,630 @@
 \titlepage
 \end{frame}
  
-\section{Обзор типов джиттера}
+ \section{Архитектура сети NGN}
 
 \begin{frame}
-\frametitle{Обзор типов джиттера}
-    \textbf{Выделяют три типа джиттера, которые могут быть вызваны различными причинами}:
-    \begin{itemize}
-        \item Постоянный джиттер - это стандартная передача пакетов с примерно постоянным изменением задержки.
-        \item Джиттер содержащий выбросы задержки возникает, когда один пакет в потоке оказывается задержанным на значительно больший интервал времени по отношению к другим. 
-        \item Джиттер содержащий скачкообразное изменения задержки, при котором задержка прибытия пакетов изменяется для целого ряда пакетов в потоке.
-    \end{itemize}
+\frametitle{Архитектура сети NGN}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{exampleblock}
+{Уровни архитектуры сети NGN:}
+\begin{itemize}
+ \item Уровень управления услугами;
+ \item Уровень сетевого контроля и управления;
+ \item Транспортный уровень;
+ \item Уровень доступа;
+ \item Уровень терминального оборудования.
+\end{itemize}
+\end{exampleblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics[width=\columnwidth]{ngn.eps}
+\end{column}
+\end{columns}
+\end{frame}
+ 
+ 
+
+ 
+\section{Цель и задача исследования}
+
+\begin{frame}
+\frametitle{Цель и задачи исследования}
+{\footnotesize
+\textbf{Цель и задача исследования} состоит в повышении качества обслуживания в гибридных сетях, которые содержат мобильную и стационарную компоненту.
+
+\textbf{Объект исследования:} процесс передачи трафика реального времени через гибридные сети.
+
+\textbf{Предмет исследования:} метод повышения качества обслуживания на основе потоковых агентов на стыке мобильных и стацонарных сетей.
+
+\textbf{Научная задача} состоит в повышении качества обслуживания в гибридных сетях, которые содержат мобильную и стационарную компоненту.
+
+\textbf{Частные задачи исследования:}
+}
+{\scriptsize
+\begin{enumerate}
+  \item Провести анализ статистических характеристик джиттера в стационарных и беспроводных сетях.
+  \item Определить основные причины формирования джиттера.
+  \item Определить статистические характеристики нестационарности джиттера и произвести классификацию нестационарных явлений задержки.
+  \item Обосновать и разработать математическую модель джиттера, позволяющую отображать динамику изменений состояний сетевой задержки.
+  \item Разработать алгоритмы стохастической оценки параметров джиттера и управления с целью его минимизации.
+  \item Разработать практические предложения по выбору параметров и мест установки агента минимизации джиттера на границе стационарной и мобильной сети.
+\end{enumerate}
+}
+
+\end{frame}
+ 
+\section{Научная новизна полученных результатов}
+
+\begin{frame}
+\frametitle{Научная новизна полученных результатов}
+{\small
+\begin{enumerate}
+  \item В результате анализа состояния составных каналов связи, включая мобильную и стационарную компоненту, выявлены причины возникновения нестационарностей и большого разброса параметров джиттера.
+  Проанализированы механизмы формирования джиттера в гибридных сетях, получены статистические данные характеристик джиттера.
+  \item Разработана более адекватная общая, по сравнению с известными, нестационарная математическая модель задержки прибытия пакетов,
+  позволяющая учитывать засоренность представления наблюдаемого процесса случайными выбросами и скачками.
+  \item 
+  Разработан новый адаптивный метод компенсации джиттера на базе робастных процедур инвариантных к распределению вероятностей процесса задержки.
+  \item 
+  Разработаны новые рекомендации по применению буфера компенсации джиттера в сетях LTE на основе потоковых агентов, устанавливаемых на границе проводной и беспроводной сети.
+\end{enumerate}
+}
+\end{frame}
+
+
+
+
+
+\section{Первый научный результат}
+
+\begin{frame}
+\frametitle{Первый научный результат}
+
+{\Large В результате анализа состояния составных каналов связи, включая мобильную и стационарную компоненту, выявлены причины возникновения нестационарностей и большого разброса параметров джиттера.
+  Проанализированы механизмы формирования джиттера в гибридных сетях, получены статистические данные характеристик джиттера.}
 
 \end{frame}
 
-\section{Основные типы джиттера пакетной задержки}
+
+
+
+
+
+\section{Градация типов джиттера}
+\begin{frame}
+\frametitle{Градация типов джиттера}
+\begin{columns}[T]
+\begin{column}{0.35\textwidth}
+{\small
+\begin{exampleblock}
+{Основные типы джиттера:}
+\begin{enumerate}
+ \item Постоянный джиттер;
+ \item Джиттер содержащий выбросы задержки;
+ \item Джиттер содержащий скачки задержки.
+\end{enumerate}
+}
+\end{exampleblock}
+\end{column}
+\begin{column}{0.65\textwidth}
+\includegraphics[width=\columnwidth]{3typeJitter.eps}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+
+
+
+\section{Причины возникновения джиттера}
+
+
 
 \begin{frame}
-\frametitle{Основные типы джиттера пакетной задержки}
-\begin{figure} [!h] 
-  \center
-\includegraphics{3typeJitter.eps}
+\frametitle{Причины возникновения джиттера}
+{\footnotesize
+\begin{exampleblock}
+{Причины возникновения джиттера характерные  проводным сетям:}
+\begin{itemize}
+\item Пакетное планирование на стороне отправителя (тип 1);
+\item Перегрузка в локальной сети (тип 2);
+\item Перегрузки в канале доступа (тип 3);
+\item Распределение нагрузки между несколькими линиями доступа или сервис-провайдерами (тип 1);
+\item Распределение нагрузки (тип 1);
+\item Неравномерное внутреннее разделение нагрузки в маршрутизаторах (тип 1);
+\item Неравномерное внутреннее разделение нагрузки в маршрутизаторах (тип 1).
+\end{itemize}
+\end{exampleblock}
 
-  \label{img:3typeJitter}  
+\begin{exampleblock}
+{Причины возникновения джиттера характерные беспроводным сетям:}
+\begin{itemize}
+\item Хэндовер (тип 2);
+\item Изменение расстояния между абонентом и базовой станцией (тип 3);
+\item Внутрисистемные помехи (тип 3);
+\item Замирания в канале (тип 3).
+\end{itemize}
+\end{exampleblock}
+}
+\end{frame}
+
+
+
+
+
+
+
+\section{Обзор архитектуры имитационной модели сети LTE в сетевом симуляторе NS3}
+
+
+\begin{frame}
+\frametitle{Обзор архитектуры имитационной модели сети LTE в сетевом симуляторе NS3}
+\begin{figure} [h]
+  \center
+\includegraphics [width=0.95\textwidth] {LTEEPC.eps}
+\end{figure}
+
+
+
+\end{frame}
+
+
+
+\section{Моделирование причин возникновения нестационарного джиттера в сети LTE}
+\begin{frame}
+\frametitle{Моделирование причин возникновения нестационарного джиттера в сети LTE}
+\begin{figure} [h]
+  \center
+\includegraphics [width=0.80\textwidth] {hand-eps-converted-to.pdf}
+\caption*{Изменение задержки прибытия пакетов при хэндовере между базовыми станциями}
+\end{figure}
+\end{frame}
+
+
+\section{Моделирование причин возникновения нестационарного джиттера в сети LTE}
+\begin{figure} [!h]
+{\fontscript\begin{footnotesize}
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth]{Sinr_dist.eps} а) \\
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth]{mcs_dist.eps} б) \\
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth]{tb_dist.eps} в) \\
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth]{speed_dist.eps} г) \\
+
+\end{minipage}
+
+\end{footnotesize}
+\caption*{Зависимость а) SINR б) MCS в) размера TBS г) скорости передачи нисходящего канала передачи от расстояния между абонентом и базовой станцией}
+\label{img:dist}
+\end{figure}
+\end{frame}
+
+
+
+
+
+\section{Моделирование причин возникновения нестационарного джиттера в сети LTE}
+
+\begin{frame}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+
+\includegraphics[width=1\linewidth]{intervsSdj.png}
+{\scriptsize \\Зависимость джиттера от расстояния до источника внутрисистемной помехи}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+\includegraphics[width=1\linewidth]{intervsSdr.png}
+
+{\scriptsize \\Зависимость пакетных потерь от расстояния до источника внутрисистемной помехи}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\section{Моделирование причин возникновения нестационарного джиттера в сети LTE}
+\begin{frame}
+\begin{scriptsize}
+\pgfplotsset{width=10cm, height=3.5cm, compat=newest}
+\begin{figure} [!bth]
+\begin{scriptsize}
+\begin{minipage}[h]{0.95\linewidth}
+  \center
+\begin{tikzpicture}
+\pgfkeys{/pgfplots/legend pos=north west}
+\begin{axis}[
+mark options={scale=0.7},
+legend cell align=left,
+%cycle list name=mark list,
+cycle list name=linestyles*,
+xlabel=Расстояние между абонентом и базовой станцией (м),
+ylabel=Задержка (с),
+]
+\addplot coordinates {
+(500,0.04)
+(0,0.022)};
+\addplot coordinates {
+(500,0.053)
+(0,0.022)};
+\addplot coordinates {
+(500,0.035)
+(0,0.022)};
+\legend{EVA, ETU, EPA}
+\end{axis}
+\end{tikzpicture}
+%\caption{Зависимость задержки пакетов от расстояния между абонентом и базовой станцией при замираниях}
+  %\label{img2:fad_del}
+
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.95\linewidth}
+ \center
+\begin{tikzpicture}
+\pgfkeys{/pgfplots/legend pos=north west}
+\begin{axis}[
+mark options={scale=0.7},
+legend cell align=left,
+%cycle list name=mark list,
+cycle list name=linestyles*,
+xlabel=Расстояние между абонентом и базовой станцией (м),
+ylabel=Джиттер (мс),
+]
+\addplot coordinates {
+(500,50)
+(0,0.33)};
+\addplot coordinates {
+(500,57)
+(0,0.53)};
+\addplot coordinates {
+(500,20)
+(0,0.31)};
+\legend{EVA, ETU, EPA}
+\end{axis}
+\end{tikzpicture}
+%\caption{Зависимость джиттера от расстояния между абонентом и базовой станцией при замираниях}
+  %\label{img2:fad_dj}
+
+\end{minipage}
+\vfill
+\begin{minipage}[h]{0.95\linewidth}
+  \center
+\begin{tikzpicture}
+\pgfkeys{/pgfplots/legend pos=north west}
+\begin{axis}[
+mark options={scale=0.7},
+legend cell align=left,
+%cycle list name=mark list,
+cycle list name=linestyles*,
+xlabel=Расстояние между абонентом и базовой станцией (м),
+ylabel=Потери (\%),
+]
+\addplot coordinates {
+(500,53)
+(0,2.7)};
+\addplot coordinates {
+(500,60)
+(0,3.7)};
+\addplot coordinates {
+(500,23)
+(0,0.9)};
+\legend{EVA, ETU, EPA}
+\end{axis}
+\end{tikzpicture}
+%\caption{Зависимость пакетных потерь от расстояния между абонентом и базовой станцией при замираниях}
+  %\label{img2:fad_drop}
+
+  \end{minipage}
+\end{scriptsize}
+\end{figure}
+\end{scriptsize}
+\end{frame}
+
+\section{Второй научный результат}
+
+\begin{frame}
+\frametitle{Второй научный результат}
+
+{\Large Разработана более адекватная общая, по сравнению с известными, нестационарная математическая модель задержки прибытия пакетов, позволяющая учитывать засоренность представления наблюдаемого процесса случайными выбросами и скачками.}
+
+\end{frame}
+
+
+
+\section{Синтез математической модели процесса задержки}
+\begin{frame}
+\frametitle{Синтез математической модели процесса задержки}
+Уравнение состояния системы:
+\begin{equation}\label{eq3:modelStat}
+x(k+1)=\Phi x(k)+G\xi(k),
+\end{equation}
+где $\Phi$ - коэффициент (в многомерном случае матрица перехода состояний); $G$ - порождающий коэффициент; $\xi(k)$ - порождающая последовательность.
+
+Уравнение наблюдения системы:
+\begin{equation}\label{eq3:Estim}
+y(k)=Hx(k)+\nu(k),
+\end{equation}
+где $\nu(k)$ - фазовый шум, некоррелированный с процессом $\xi(k)$.
+\end{frame}
+
+
+\section{Синтез математической модели процесса задержки}
+\begin{frame}
+\frametitle{Синтез математической модели процесса задержки}
+Фазовый шум для уравнения наблюдения процесса, содержащего выбросы:
+
+
+\begin{equation}\label{eq3:v}
+\nu_{re}(k)=(1-r_v(k))\nu_{id}(k)+r_v(k)\nu_{di}(k),
+\end{equation}
+
+\begin{equation}\label{eq3:vp}
+P[\nu_{re}(k)]=(1-\varepsilon)N[0,R_1(k)]+\varepsilon N[0,R_2(k)],
+\end{equation}
+
+где $\nu_{di}(k)$ - случайный процесс выброса, $P$ - плотность распределения вероятностей, $r_v(k)$ - случайная величина, принимающая значения 0 и 1 с вероятностями:
+
+\begin{equation}\label{eq3:vpp}
+P[r_v(k)=1]=\varepsilon, P[r_v(k)=0]=1-\varepsilon, ||R_2||>>||R_1||.
+\end{equation}
+
+\end{frame}
+
+
+\section{Синтез математической модели процесса задержки}
+\begin{frame}
+\frametitle{Синтез математической модели процесса задержки}
+Порождающая последовательность для уравнения состояния процесса, содержащего скачки:
+
+\begin{equation}\label{eq3:s}
+\xi_{re}(k)=(1-r_s(k))\xi_{id}(k)+r_s(k)\xi_{di}(k),
+\end{equation}
+
+\begin{equation}\label{eq3:sp}
+P[\xi_{re}(k)]=(1-\varepsilon)N[0,R_3(k)]+\varepsilon N[0,R_4(k)],
+\end{equation}
+
+\noindent где $\xi_{di}(k)$ - случайный процесс скачка, $r_s(k)$ - случайная величина, принимающая значения 0 и 1 с вероятностями:
+
+\begin{equation}\label{eq3:spp}
+P[r_s(k)=1]=\varepsilon, P[r_s(k)=0]=1-\varepsilon, ||R_2||>>||R_1||.
+\end{equation}
+
+\end{frame}
+
+\section{Моделирование последовательностей задержек}
+\begin{frame}
+\frametitle{Моделирование последовательностей задержек}
+\begin{figure} [h]
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth , height=3.5cm]{3chapter/3_1_a.eps} \\{\scriptsize а)} \\
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.47\linewidth}
+\center
+\includegraphics[width=1\linewidth, height=3.5cm]{3chapter/3_1_b.eps} \\{\scriptsize б)} \\
+\end{minipage}
+\caption*{Моделирование ряда задержек а) с выбросами, б) со скачками}
+\label{img3:modelJitter}
+\end{figure}
+\end{frame}
+
+
+\section{Третий научный результат}
+
+\begin{frame}
+\frametitle{Третий научный результат}
+
+{\Large Разработан новый адаптивный метод компенсации джиттера на базе робастных процедур инвариантных к распределению вероятностей процесса задержки.}
+
+\end{frame}
+
+\section{Фильтр Калмана-Бьюси (ФКБ)}
+
+\begin{frame}
+\frametitle{Фильтр Калмана-Бьюси (ФКБ)}
+
+ФКБ синтезирован с учетом того, что наблюдаемый процесс соответствует уравнению (\ref{eq3:modelStat}) и наблюдается на фоне гауссовского белого шума.
+ Уравнение оценки в виде условного среднего значения задержки с использованием ФКБ имеет вид:
+
+
+\begin{equation}\label{eq3:Estim_rel}
+\hat{x}(k+1)=\Phi\hat{x}(k)+K(k)\Delta y,
+\end{equation}
+\noindent где $\Delta y=H\Phi\hat{x}(k)-y(k)$ - невязка, $K(k)$ - коэффициент усиления ФКБ:
+
+\begin{equation}\label{eq3:K}
+K(k)=V(k)H^TN_{\nu}^{-1},
+\end{equation}
+ 
+\begin{equation}\label{eq3:V}
+V(k)=[I-K(k-1)H(k)]V(k,k-1),
+\end{equation}
+
+
+\begin{equation}\label{eq3:Vkk-1}
+V(k,k-1)=\Phi^TV(k-1)\Phi+N_\xi,
+\end{equation}
+
+\noindent где $V(k)$ - апостериорная дисперсия ошибки оценки, $V(k,k-1)$ - априорная дисперсия ошибки оценки, $I$ - единичная матрица.
+
+\end{frame}
+
+\section{Робастный Фильтр Калмана-Бьюси (РФКБ) для ситуации выброса}
+
+\begin{frame}
+\frametitle{Робастный Фильтр Калмана-Бьюси (РФКБ) для ситуации выброса}
+
+\begin{equation}\label{eq3:skachok}
+\hat{x}(k+1)=\Phi(k+1,k)\hat{x}(k)+K(k)\Delta y\cdot min\left\{1,\frac{b}{|K(k)\Delta y|}\right\},
+\end{equation}
+где $b$ аргумент, ограничивающий изменение значения функции.
+\begin{figure} [h]
+  \center
+\includegraphics[width=0.8\textwidth]{3chapter/output.eps}
+  \caption*{Схема РФКБ для фильтрации случайных процессов содержащих выбросы}
+  \label{img3:kalmanV}
 \end{figure}
 
 \end{frame}
 
-\section{Анализ причин джиттера в проводной сети}
+
+\section{Робастный Фильтр Калмана-Бьюси (РФКБ) для ситуации скачка}
 
 \begin{frame}
-\frametitle{Название слайда}
-    \textbf{Нумерованный список}:
-    \begin{itemize}
-        \item Раз
-        \item Два
-        \item Три
-    \end{itemize}
-\begin{exampleblock}{Пример}
-         Текст примера
-\end{exampleblock}
-\begin{equation}
-\B{LoG}(\sigma;x,y) = \nabla^2 \B{G} =
-\rev{\sigma^3\sqrt{2\pi}}\Bigl(2-\frac{x^2+y^2}{\sigma^2}\Bigr)
-\e^{-\frac{x^2+y^2}{2\sigma^2}}.
-\label{log}
+\frametitle{{\large Робастный Фильтр Калмана-Бьюси (РФКБ) для ситуации скачка}}
+
+\begin{equation}\label{eq3:vibros}
+\begin{split}
+\hat{x}(k+1)=&\Phi(k+1,k)\hat{x}(k)+H(k)[I-H(k)K(k)\Delta y]\times \\
+&\times min\left\{1,\frac{b}{|I-H(k)K(k)\Delta y|}\right\},
+\end{split}
 \end{equation}
-Комбинация фильтров Лапласа и Гаусса и есть оператор лапласиана гауссианы.
+\begin{figure} [h]
+  \center
+\includegraphics[width=0.8\textwidth]{3chapter/output1.eps}
+  \caption*{Схема РФКБ для фильтрации случайных процессов содержащих скачки}
+  \label{img3:kalmanS}
+\end{figure}
 \end{frame}
 
+
+\section{Гибридный Робастный Фильтр Калмана-Бьюси}
+
+
+\begin{frame}[fragile]
+\frametitle{Гибридный Робастный Фильтр Калмана-Бьюси}
+\begin{scriptsize}
+\begin{equation}\label{eq3:syntes1}
+\begin{split}
+\hat{x}(k+1)=&\Phi(k+1,k)\hat{x}(k)+(1-\eta)K(k)\Delta y min\left\{1,\frac{b}{|K(k)\Delta y|}\right\}+\\
+&+\eta H(k)[I-H(k)K(k)\Delta y] \left\{1,\frac{b}{|I-H(k)K(k)\Delta y|}\right\},
+\end{split}
+\end{equation}
+
+\begin{equation}\label{eq3:syntes2}
+\eta= \;
+\begin{cases}
+0, \; cond(k) \\    
+1, \; cond(k),    
+\end{cases}
+\end{equation}
+где $cond(k)$ - функция, которая определяет, произошел ли скачок задержки:
+
+\begin{lstlisting}[language=Python]
+ 1  def cond(arr, w, b):  
+ 2    try:  
+ 3      arr[-w] 
+ 4    except IndexError:
+ 5      return False
+ 6    if arr[-w]<b:
+ 7      return False
+ 8    if w==1 and arr[-w]>=b:
+ 9      return True
+ 10   if k==1 and arr[-w]<b:
+ 11     return False
+ 12   else:
+ 13     if cond(arr, w-1, b):
+ 14       return True  # detected nonstationary delay
+ 15     else:
+ 16       return False  # no detected nonstationary delay
+\end{lstlisting}
+\end{tiny}
+
+\end{frame}
+
+
+
+
+
+
+\section{Сравнительный анализ алгоритмов фильтрации}
+
+\begin{frame}
+\frametitle{Сравнительный анализ алгоритмов фильтрации}
+\begin{scriptsize}
+
+\pgfplotsset{width=10cm, height=4cm, compat=newest}
+\begin{figure} [!h]
+  \center
+\begin{tikzpicture}
+%\pgfkeys{/pgfplots/legend pos=north west}
+
+\begin{axis}[
+mark options={scale=0.5},
+ylabel={Mem [GB]},
+legend style={
+%area legend,
+at={(0.5,-0.2)},
+anchor=north,
+legend columns=3},
+legend cell align=left,
+cycle list name=mark list,
+%cycle list name=linestyles,
+xlabel=Порядковый номер пакета,
+ylabel=Задержка (мс),
+xmin=380,
+xmax=480оторую вы делали.
+]
+
+\input{graphs/3}
+
+\legend{Задержка, ФКБ, РФКБ(выбросы), РФКБ(скачки), ГРФКБ}
+\end{axis}
+\end{tikzpicture}
+\caption*{СКО оценки фильтров в разных ситуациях зашумленности}
+
+
+\begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+    \hline
+    Тип фильтра        & Условия без выбросов и скачков & Условия с выбросами & Условия со скачками  & Условия с выбросами и скачками \\ \hline
+    ФКБ                 & \textbf{0,1327}                 & 0,1722                   & 0,6024                 & 0,2371                           \\ \hline
+    РФКБ (для выбросов) & 0,1685                          &  \textbf{0,163}       & 0,6515                 & 0,3052                           \\ \hline
+    РФКБ (для скачков)   & 0,135                           & 0,19               & \textbf{0,5024}                & 0,2630                             \\ \hline
+    ГРФКБ               & 0,139                          & 0,168               &   0,5523            & \textbf{0,1869}                           \\ \hline
+    \end{tabular}
+\end{figure}
+\end{scriptsize}
+\end{frame}
+
+
+
+
+
+\section{Четвертый научный результат}
+
+\begin{frame}
+\frametitle{Четвертый научный результат}
+
+{\Large Разработаны новые рекомендации по применению буфера компенсации джиттера в сетях LTE на основе потоковых агентов, устанавливаемых на границе проводной и беспроводной сети.}
+
+\end{frame}
 
 \end{document}
