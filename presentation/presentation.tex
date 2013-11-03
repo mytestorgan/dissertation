@@ -19,6 +19,9 @@
 \usepackage{pgfplots}
 \usepackage{listings}
 
+\usetikzlibrary{dsp,chains}
+\usepackage{tikz-timing}
+
 \defbeamertemplate*{title page}{customized}[1][]
 {
   \vbox{}
@@ -202,9 +205,9 @@
 \item Перегрузка в локальной сети (тип 2);
 \item Перегрузки в канале доступа (тип 3);
 \item Распределение нагрузки между несколькими линиями доступа или сервис-провайдерами (тип 1);
-\item Распределение нагрузки (тип 1);
+\item Распределение нагрузки между несколькими маршрутами(тип 1);
 \item Неравномерное внутреннее разделение нагрузки в маршрутизаторах (тип 1);
-\item Неравномерное внутреннее разделение нагрузки в маршрутизаторах (тип 1).
+\item Влияние высокоприоритетного служебного трафика на менее приоритетный (тип 2).
 \end{itemize}
 \end{exampleblock}
 
@@ -660,7 +663,7 @@ cycle list name=mark list,
 xlabel=Порядковый номер пакета,
 ylabel=Задержка (мс),
 xmin=380,
-xmax=480оторую вы делали.
+xmax=480
 ]
 
 \input{graphs/3}
@@ -684,6 +687,322 @@ xmax=480оторую вы делали.
 \end{frame}
 
 
+\section{Управления буфером компенсации джиттера}
+
+\begin{frame}
+\frametitle{Управления буфером компенсации джиттера}
+
+\begin{scriptsize}
+\begin{figure}[!h]
+\centering
+\includegraphics[height=3cm]{timing_buffer.png}
+\label{fig:man_5}
+\end{figure}
+
+Размер буфера $\Delta t^i$ рассчитывается только для первого пакета каждого речевого потока на основе оценки отклонения $\hat V (k)$ от условного среднего значения сетевой задержки:
+\begin{equation}\label{eq41:syntes3}
+\hat{V}(k)=\alpha\cdot\hat{V}(k-1)+(1-\alpha)\cdot V(k),
+\end{equation}
+
+\begin{equation}\label{eq41:syntes4}
+V^i(k)= \;
+\begin{cases}
+| \hat{x}(k)-x(k) |, \; K(k)\Delta y \leq b; \\    
+V(k-1), \;  K(k)\Delta y > b,    
+\end{cases}
+\end{equation}
+
+\begin{equation}\label{eq41:syntes5}
+\Delta t^i= \;
+\begin{cases}
+\gamma\cdot\hat{V}^{i-1}, \; \hat{V}^{i-1} \geq \Delta t_{min}; \\    
+\gamma\cdot\Delta t_{min}, \;  \hat{V}^{i-1} < \Delta t_{min},    
+\end{cases}
+\end{equation}
+\noindent где $\gamma$ - константа для управления процентом отбрасываемых пакетов и задержкой.
+\end{scriptsize}
+
+\end{frame}
+
+\section{Управления буфером компенсации джиттера}
+
+\begin{frame}
+\frametitle{Управления буфером компенсации джиттера}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1\linewidth , height=3.5cm]{manage_buffer.png}
+\caption*{Блок схема метода управления буфером компенсации джиттера}
+\label{fig:man_5}
+\end{figure}
+
+\end{frame}
+
+
+
+\section{Выбросы задержки}
+
+\begin{frame}
+
+
+\begin{scriptsize}
+
+\pgfplotsset{width=10cm, height=3cm, compat=1.3}
+\begin{figure} [!ht]
+  \center
+\begin{tikzpicture}
+%\pgfkeys{/pgfplots/legend pos=north west}
+
+\begin{axis}[
+mark options={scale=0.25},
+ylabel={Mem [GB]},
+legend style={
+%area legend,
+at={(0.5,-0.3)},
+anchor=north,
+legend columns=2},
+legend cell align=left,
+%cycle list name=mark list,
+xlabel=Вероятность выброса задержки,
+ylabel=Оценка Е-модели,
+xmode = log,
+xlogBase=10,
+ymin=40,
+cycle list name=linestyles*,
+ymax=93
+]
+ 
+                                 \addplot+[color=red,no marks, mark options={solid}] coordinates {
+                                        (0.01, 75.5879981126)
+                                        (1e-05, 90.0450377613)
+                                        
+                                }; \addlegendentry{Буфер на основе ГРФК}
+                                \addplot+[color=blue,no marks, mark options={solid}] coordinates {
+                                        (0.01, 64.523981126)
+                                        (1e-05, 90.0427744278)
+                                        
+                                }; \addlegendentry{Классический буфер}
+
+                                \addplot+[color=red,only marks,style={solid}, mark=star, mark options={solid},error bars/y dir=both,error bars/y fixed=1.7] coordinates {
+                                        (0.01, 75.5879981126)
+                                        (0.002, 78.9639873975)
+                                        (0.001, 80.5521786395)
+                                        (0.0002, 83.5521786395)
+                                        (1e-05, 90.0450377613)
+                                };
+                                \addplot+[color=blue,only marks,style={solid}, mark options={solid},error bars/y dir=both,error bars/y fixed=1.7] coordinates {
+                                        (0.01, 64.523981126)
+                                        (0.002, 70.348858614)
+                                        (0.001, 72.5521786395)
+                                        (0.0002, 78.5521786395)
+                                        (1e-05, 90.0427744278)
+                                };
+ 
+ 
+ 
+\end{axis}
+\end{tikzpicture}
+\caption{Зависимость качества передачи речи от вероятности появления выброса задержки}
+  \label{img5:qos_v_ver}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure} [!ht]
+  \center
+\begin{tikzpicture}
+%\pgfkeys{/pgfplots/legend pos=north west}
+
+\begin{axis}[
+mark options={scale=0.25},
+ylabel={Mem [GB]},
+legend style={
+%area legend,
+at={(0.5,-0.3)},
+anchor=north,
+legend columns=2},
+legend cell align=left,
+%cycle list name=mark list,
+xlabel=Амплитуда выброса задержки (мс),
+ylabel=Оценка Е-модели,
+ymin=70,
+cycle list name=linestyles*,
+ymax=80
+]
+                                \addplot+[color=red,no marks, mark options={solid}] coordinates {
+                                        (5, 75.4510042466)
+                                        (200, 73.7142638015)
+                                        
+                                }; \addlegendentry{Буфер на основе ГРФК}
+                                \addplot+[color=blue,no marks, mark options={solid}] coordinates {
+                                        (5, 75.4498764729)
+                                        (200, 72.6664001734)
+                                        
+                                }; \addlegendentry{Классический буфер}
+
+                                \addplot+[color=red,only marks,style={solid}, mark=star, mark options={solid},error bars/y dir=both,error bars/y fixed=0.3] coordinates {
+                                        (5, 75.4510042466)
+                                        (20, 75.4510042466)
+                                        (50, 75.1536231061)
+                                        (100, 74.6536231061)
+                                        (200, 73.7142638015)
+                                };
+                                \addplot+[color=blue,only marks,style={solid}, mark options={solid},error bars/y dir=both,error bars/y fixed=0.3] coordinates {
+                                        (5, 75.4498764729)
+                                        (20, 75.0498764729)
+                                        (50, 74.5427910489)
+                                        (100, 74.1427910489)
+                                        (200, 72.6664001734)
+                                };
+                                
+
+
+
+
+\end{axis}
+\end{tikzpicture}
+\caption{Зависимость качества передачи речи от амплитуды выброса задержки}
+  \label{img5:qos_v_amp}
+\end{figure}
+
+\end{scriptsize}
+\end{frame}
+
+
+\section{Скачки задержки}
+
+\begin{frame}
+
+
+\begin{scriptsize}
+
+\pgfplotsset{width=10cm, height=3cm, compat=1.3}
+\begin{figure} [!ht]
+  \center
+\begin{tikzpicture}
+%\pgfkeys{/pgfplots/legend pos=north west}
+
+\begin{axis}[
+mark options={scale=0.25},
+ylabel={Mem [GB]},
+legend style={
+%area legend,
+at={(0.5,-0.3)},
+anchor=north,
+legend columns=2},
+legend cell align=left,
+%cycle list name=mark list,
+xlabel=Вероятность скачка задержки,
+ylabel=Оценка Е-модели,
+xmode = log,
+xlogBase=10,
+ymin=40,
+cycle list name=linestyles*,
+ymax=93
+]
+                                \addplot+[color=red,no marks, mark options={solid}] coordinates {
+                                        (0.01, 80.243816584)
+                                        (1e-05, 92.0889919507)
+                                }; \addlegendentry{Буфер на основе ГРФК}
+                                \addplot+[color=blue,no marks, mark options={solid}] coordinates {
+                                        (0.01, 60.9513596189)
+                                        (1e-05, 92.0889919507)
+                                }; \addlegendentry{Классический буфер}
+
+                                \addplot+[color=red,only marks,style={solid}, mark=star, mark options={solid},error bars/y dir=both,error bars/y fixed=2.7] coordinates {
+                                        (0.01, 80.243816584)
+                                        (0.002, 82.243816584)
+                                        (0.001, 84.7696459001)
+                                        (0.0002, 86.7696459001)
+                                        (0.0001, 88.0889919507)
+                                        (1e-05, 92.0889919507)
+                                };
+
+                                \addplot+[color=blue,only marks,style={solid}, mark options={solid},error bars/y dir=both,error bars/y fixed=2.7] coordinates {
+                                        (0.01, 60.9513596189)
+                                        (0.002, 65.9513596189)
+                                        (0.001, 70.8931914379)
+                                        (0.0002, 75.8931914379)
+                                        (0.0001, 86.9536264595)
+                                        (1e-05, 91.9536264595)
+                                }; 
+
+                                
+
+
+
+
+\end{axis}
+\end{tikzpicture}
+\caption*{Зависимость качества передачи речи от вероятности появления скачка задержки}
+  \label{img5:qos_ver}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure} [!ht]
+  \center
+\begin{tikzpicture}
+%\pgfkeys{/pgfplots/legend pos=north west}
+
+\begin{axis}[
+mark options={scale=0.25},
+ylabel={Mem [GB]},
+legend style={
+%area legend,
+at={(0.5,-0.3)},
+anchor=north,
+legend columns=2},
+legend cell align=left,
+%cycle list name=mark list,
+xlabel=Амплитуда скачка задержки (мс),
+ylabel=Оценка Е-модели,
+ymin=40,
+cycle list name=linestyles*,
+ymax=93
+]
+                                \addplot+[color=red,no marks, mark options={solid}] coordinates {
+                                        (5, 88.0889919507)
+                                        (200, 78.243816584)
+                                        
+                                }; \addlegendentry{Буфер на основе ГРФК}
+                                \addplot+[color=blue,no marks, mark options={solid}] coordinates {
+                                        (5, 86.0889919507)
+                                        (200, 72.9513596189)
+                                        
+                                }; \addlegendentry{Классический буфер}
+
+                                \addplot+[color=red,only marks,style={solid}, mark=star, mark options={solid},error bars/y dir=both,error bars/y fixed=2.7] coordinates {
+                                        (5, 88.0889919507)
+                                        (20, 86.243816584)
+                                        (50, 85.7696459001)
+                                        (100, 81.7696459001)
+                                        (200, 78.243816584)
+                                };
+
+                                \addplot+[color=blue,only marks,style={solid}, mark options={solid},error bars/y dir=both,error bars/y fixed=2.7] coordinates {
+                                        (5, 86.0889919507)
+                                        (20, 82.243816584)
+                                        (50, 83.7696459001)
+                                        (100, 76.7696459001)
+                                        (200, 72.9513596189)
+                                }; 
+
+                                
+
+
+
+
+\end{axis}
+\end{tikzpicture}
+\caption*{Зависимость качества передачи речи от амплитуды скачка задержки}
+  \label{img5:qos_amp}
+\end{figure}
+
+\end{scriptsize}
+\end{frame}
+
 
 
 
@@ -695,5 +1014,78 @@ xmax=480оторую вы делали.
 {\Large Разработаны новые рекомендации по применению буфера компенсации джиттера в сетях LTE на основе потоковых агентов, устанавливаемых на границе проводной и беспроводной сети.}
 
 \end{frame}
+
+
+
+\section{Концепции потоковых агентов (ПА)}
+
+\begin{frame}
+\frametitle{Концепции потоковых агентов (ПА)}
+
+\begin{figure} [h]
+  \center
+\includegraphics [width=0.95\textwidth] {SA.eps}
+  \caption*{Блок схема фукционирования потокового агента}
+  \label{img:SA}
+\end{figure}
+
+\begin{scriptsize}
+ПА позволяет выполнять множество функций для улучшения качества предоставления мультимедийных услуг:
+\begin{itemize}
+\item ПА предоставляет дополнительную обратную связь для контент сервера с границы между проводной  и беспроводной частью сети;
+\item ПА дает возможность определить место пакетной ошибки, что позволяет корректно реагировать на потери и задержки в сети;
+\item предварительное отбрасывание пакетов, которые передаются сверх возможностей беспроводной сети;
+\item ретрансляция на прикладном уровне позволяет уменьшить  пакетные искажения  для приложений не восприимчивых к задержке;
+\item прямая коррекция ошибок позволяет уменьшить битовые искажения для приложений восприимчивых к задержке.
+\end{itemize}
+\end{scriptsize}
+\end{frame}
+
+\section{Выводы}
+
+\begin{frame}
+\frametitle{Выводы}
+
+
+
+{\small
+
+В рамках диссертационной работы решена актуальная научная задача, которая заключается в повышении качества предоставления мультмедийной информации в гибридных сетях за счет внедрения буфера предварительной компенсации джиттера на границе проводной и беспроводной сети.
+}
+
+\begin{footnotesize}
+\begin{enumerate}
+  \item В результате анализа состояния составных каналов связи, включая мобильную и стационарную компоненту, выявлены причины возникновения нестационарностей и большого разброса параметров джиттера.
+  Проанализированы механизмы формирования джиттера в гибридных сетях, получены статистические данные характеристик джиттера.
+  \item Разработана более адекватная общая, по сравнению с известными, нестационарная математическая модель задержки прибытия пакетов,
+  позволяющая учитывать засоренность представления наблюдаемого процесса случайными выбросами и скачками.
+  \item 
+  Разработан новый адаптивный метод компенсации джиттера на базе робастных процедур инвариантных к распределению вероятностей процесса задержки.
+  \item 
+  Разработаны новые рекомендации по применению буфера компенсации джиттера в сетях LTE на основе потоковых агентов, устанавливаемых на границе проводной и беспроводной сети.
+\end{enumerate}
+\end{footnotesize}
+
+
+\end{frame}
+
+
+\section{Апробация результатов диссертации}
+
+\begin{frame}
+\frametitle{Апробация результатов диссертации}
+Основные результаты диссертационной работы отражены в 10 научных трудах, из которых  5  статей опубликованы в специализированных изданиях Украины и 1 статья – в заграничном журнале.
+Апробация основных результатов проводилась в ходе 4 конференций и форумов.
+
+Полученные результаты внедрены: 
+\begin{enumerate}
+\item в научно-исследовательской работы №1261-1 <<Методи підвищення продуктивності безпроводових мереж наступного покоління>>
+\item в раздел 5.12 книги <<Методы научных исследований в телекоммуникациях>>
+\item в учебном процессе кафедры телекоммуникационных систем Харьковского национального университета радиоэлектроники (ХНУРЭ), а именно в дисциплине ''Мобильные системы связи`` при выполнении лабораторных работ
+\end{enumerate}
+ 
+
+\end{frame}
+
 
 \end{document}
