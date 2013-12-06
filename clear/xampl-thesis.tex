@@ -78,9 +78,11 @@
 \makeatother
 
 \usepackage{hhline}
+
+
 \usepackage{caption}
-
-
+\DeclareCaptionLabelSeparator{dot}{. }
+\captionsetup{justification=centering,labelsep=dot}
 
 \begin{document}
 \input{names}
@@ -91,10 +93,10 @@
 \input{introduction}
 \input{part1}
 \pgfkeys{/pgf/number format/.cd,precision=6,use comma,fixed,1000 sep={}}
-%\input{part2}
-%\input{part3}
-%\input{part4}
-%\input{part5}
+\input{part2}
+\input{part3}
+\input{part4}
+\input{part5}
 %\input{test}
 \input{conclusions}
 \input{references}		
